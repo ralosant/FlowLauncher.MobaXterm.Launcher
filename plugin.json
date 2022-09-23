@@ -1,0 +1,12 @@
+{
+    "ID":"f32cc390-11c6-4ec9-a77f-87034e7c9628",
+    "ActionKeyword":"moba",
+    "Name":"MobaXterm Launcher",
+    "Description":"Launch MobaXterm sessions from bookmarks",
+    "Author":"Raúl Losantos",
+    "Version":"1.0",
+    "Language":"python",
+    "Website":"https://github.com/ralosant/MobaXterm-Launcher",
+    "ExecuteFileName":"main.py",
+    "IcoPath": "MobaXterm.ico"
+}
