@@ -11,10 +11,10 @@ import winreg as reg
 import subprocess
 import json
 from os.path import isfile
-from flowlauncher import FlowLauncher
+#from flowlauncher import FlowLauncher
+from flox import Flox
 
-
-class MobaLauncher(FlowLauncher):
+class MobaLauncher(Flox):
     """MabaXterm session launcher."""
 
     def mobaxterm_manifests(self, MobaXterm_folder_path):
