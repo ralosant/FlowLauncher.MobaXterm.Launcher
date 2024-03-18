@@ -1,0 +1,7 @@
+body:
+  - type: input
+    attributes:
+      name: moba_path
+      label: "Set default MobaXterm path"
+      defaultValue: "C:\\Program Files (x86)\\Mobatek\\MobaXterm\\"
+      description: "Type the path of MobaXterm you want to use"
