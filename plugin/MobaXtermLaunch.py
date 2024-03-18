@@ -2,7 +2,7 @@
 """
 MabaXterm session launcher.
 
-This plugin launches your bookmark sessions in MobaXterm from Flow.Launcher
+This plugin launches your sessions in MobaXterm from Flow.Launcher
 """
 import os
 import sys
@@ -12,11 +12,6 @@ import subprocess
 import json
 from os.path import isfile
 from flowlauncher import FlowLauncher
-# from flox import Flox
-
-# class Get_conf(Flox):
-    # def __init__(self):
-        # return self.settings.get("MOBA_PATH")
 
 
 class MobaLauncher(FlowLauncher):
@@ -90,9 +85,6 @@ class MobaLauncher(FlowLauncher):
         
     def query(self, query):
         """Autocompletion."""
-        # with open(os.path.join(os.path.dirname(__file__), "config.json"), "r") as content_file:
-            # config = json.loads(content_file.read())
-        # MobaXterm_folder_path = os.path.expandvars(config["MobaXtermPath"])
         MobaXterm_folder_path = os.path.expandvars(self.rpc_request['settings']['moba_path'])
         MobaXterm_path = self.find_MobaXterm_path(MobaXterm_folder_path)
         session_list = self.load_sessions(MobaXterm_folder_path)
