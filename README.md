@@ -6,5 +6,3 @@ This plugin let you launch [MobaXterm](https://mobaxterm.mobatek.net/) sessions 
 
 *. With portable version: Edit config.json file in the plugin folder and set the the MobaXterm folder path.
                           MobaXterm.ini should be in the same folder.
-
-Based on [HelloWorldPython](https://github.com/Flow-Launcher/Flow.Launcher.Plugin.HelloWorldPython) and [Wox-Plugin-Kitty](https://github.com/Wox-launcher/Wox.Plugin.Kitty).
