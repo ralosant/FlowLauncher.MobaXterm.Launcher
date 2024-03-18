@@ -11,12 +11,13 @@ import winreg as reg
 import subprocess
 import json
 from os.path import isfile
-#from flowlauncher import FlowLauncher
-from flox import Flox
+from flowlauncher import FlowLauncher
 
-class MobaLauncher(Flox):
+
+
+class MobaLauncher(FlowLauncher):
     """MabaXterm session launcher."""
-
+        
     def mobaxterm_manifests(self, MobaXterm_folder_path):
         """Locate .ini file with the sessions."""
         # Read from registry
@@ -61,8 +62,69 @@ class MobaLauncher(Flox):
                     sessions.append(name_session)
                 else:
                     sessions.append(f"{subrep}\\{name_session}")
+        
+        with open(self.mobaxterm_manifests(MobaXterm_folder_path)) as inif:
+            lines = list(inif.read().splitlines())
+        for i in range(100):
+            try:
+                n0_line = lines.index(f'[SharedSessions{i}]')
+                file_shared_session = (lines[n0_line+5].split('='))[-1]
+            except ValueError:
+                break
+            with open(file_shared_session) as inif:
+                lines = list(inif.read().splitlines())
+            for i in range(100):
+                if i == 0:
+                    n0_line = lines.index('[Bookmarks]')
+                else:
+                    try:
+                        n0_line = lines.index(f'[Bookmarks_{i}]')
+                    except ValueError:
+                        break
+                subrep = lines[n0_line+1].split('=')[-1]
+                for j in range(100):
+                    name_session = (lines[n0_line+3+j].split('='))[0]
+                    if not name_session:
+                        break
+                    if i == 0:
+                        sessions.append(name_session)
+                    else:
+                        sessions.append(f"{subrep}\\{name_session}")
+        
         return json.dumps(sessions)
 
+    # def load_shared_sessions(self, MobaXterm_folder_path):
+        # """Read user saved sessions in Shared Sessions."""
+        # sessions = []
+        # with open(self.mobaxterm_manifests(MobaXterm_folder_path)) as inif:
+            # lines = list(inif.read().splitlines())
+        # for i in range(100):
+            # try:
+                # n0_line = lines.index(f'[SharedSessions{i}]')
+                # file_shared_session = (lines[n0_line+5].split('='))[-1]
+            # except ValueError:
+                # break
+            # with open(file_shared_session) as inif:
+                # lines = list(inif.read().splitlines())
+            # for i in range(100):
+                # if i == 0:
+                    # n0_line = lines.index('[Bookmarks]')
+                # else:
+                    # try:
+                        # n0_line = lines.index(f'[Bookmarks_{i}]')
+                    # except ValueError:
+                        # break
+                # subrep = lines[n0_line+1].split('=')[-1]
+                # for j in range(100):
+                    # name_session = (lines[n0_line+3+j].split('='))[0]
+                    # if not name_session:
+                        # break
+                    # if i == 0:
+                        # sessions.append(name_session)
+                    # else:
+                        # sessions.append(f"{subrep}\\{name_session}")
+        # return json.dumps(sessions)      
+        
     def query(self, query):
         """Autocompletion."""
         with open(os.path.join(os.path.dirname(__file__), "config.json"), "r") as content_file:
