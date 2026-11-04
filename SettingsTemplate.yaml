@@ -2,6 +2,12 @@ body:
   - type: input
     attributes:
       name: moba_path
-      label: "Set default MobaXterm path"
+      label: "MobaXterm path:"
       defaultValue: "C:\\Program Files (x86)\\Mobatek\\MobaXterm\\"
-      description: "Type the path of MobaXterm you want to use"
+      description: Folder or .exe of MobaXterm (installed or portable). Environment variables are allowed, e.g. %USERPROFILE%\Tools\MobaXterm
+  - type: input
+    attributes:
+      name: ini_path
+      label: "MobaXterm.ini path (optional):"
+      defaultValue: ""
+      description: Leave empty to detect it automatically (registry, MobaXterm folder or %APPDATA%\MobaXterm)
